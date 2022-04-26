@@ -4,9 +4,9 @@ import CryptoKit
 
 //MARK: Array
 
-extension Array where Element == String {
+public extension Array where Element == String {
     
-    func hashValues() -> String {
+    public func hashValues() -> String {
         var valueString = ""
         for each in 0..<self.count {
             valueString.append(self[each])
@@ -15,7 +15,7 @@ extension Array where Element == String {
         return(hash.hexStr)
     }
     
-    func useAsKeyValues() -> String {
+    public func useAsKeyValues() -> String {
         var valueString = ""
         for each in 0..<self.count {
             valueString.append(self[each])
@@ -26,16 +26,16 @@ extension Array where Element == String {
 
 //MARK: Data
 
-extension Data {
-    func hexEncodedString() -> String {
+public extension Data {
+    public func hexEncodedString() -> String {
         return map { String(format: "%02hhx", $0) }.joined()
     }
 }
 
 //MARK: Date
 
-extension Date {
-    var millisecondsSince1970: Int64 {
+public extension Date {
+    public var millisecondsSince1970: Int64 {
         Int64((self.timeIntervalSince1970 * 1000.0).rounded())
     }
     
@@ -46,17 +46,17 @@ extension Date {
 
 //MARK: Digest
 
-extension Digest {
-    var bytes: [UInt8] { Array(makeIterator()) }
-    var data: Data { Data(bytes) }
-    var hexStr: String {
+public extension Digest {
+    public var bytes: [UInt8] { Array(makeIterator()) }
+    public var data: Data { Data(bytes) }
+    public var hexStr: String {
         bytes.map { String(format: "%02X", $0) }.joined()
     }
 }
 
 //MARK: Double
 
-extension Double {
+public extension Double {
 
     public var asBNBAmount:String {
         func asBNB() -> String {
@@ -134,9 +134,9 @@ extension Double {
 
 //MARK: String
 
-extension String {
+public extension String {
     
-    func addCommas(positions:[Int]) -> String {
+    public func addCommas(positions:[Int]) -> String {
         var text = self
         for each in 0..<positions.count {
             text.insert(",", at: (text.index(text.endIndex, offsetBy: positions[each])))
@@ -144,7 +144,7 @@ extension String {
         return text
     }
     
-    func shortenAddress(front:Int=5,end:Int=4) -> String {
+    public func shortenAddress(front:Int=5,end:Int=4) -> String {
         var returnString = ""
         if self.count == 42 && self.dropLast(40) == "0x" {
             let prefix = self.dropLast(42 - front)
@@ -159,7 +159,7 @@ extension String {
     }
     
     
-    func asMoralisABI(params:[AnyObject] = [AnyObject]()) -> String {
+    public func asMoralisABI(params:[AnyObject] = [AnyObject]()) -> String {
         let prefix = "{\"abi\":"
         var suffix = ""
         if params.isEmpty {
@@ -173,7 +173,7 @@ extension String {
 
 //MARK: Int
 
-extension Int {
+public extension Int {
     
     public var asDollarAmount:String {
         func asDollar() -> String {
