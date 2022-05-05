@@ -191,4 +191,8 @@ public extension Int {
         return asDollar()
     }
     
+    public var asString:String {
+        return String(self)
+    }
+    
 }
